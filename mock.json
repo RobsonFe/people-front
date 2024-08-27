@@ -1,0 +1,79 @@
+{
+  "count": 9,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "34e7f785-c647-4552-a1c5-efc904ae9654",
+      "nome": "Robson Ferreira",
+      "email": "rob@gmail.com",
+      "idade": 30,
+      "profissao": "Desenvolvedor",
+      "salario": "3000.00"
+    },
+    {
+      "id": "03c1cf42-2bc9-4885-8e5b-29529031087c",
+      "nome": "Robson Ferreira",
+      "email": "rob@example.com",
+      "idade": 30,
+      "profissao": "Desenvolvedor",
+      "salario": "3000.00"
+    },
+    {
+      "id": "8488a2b3-b0ad-403e-bff4-5142728688ed",
+      "nome": "Robson Ferreira",
+      "email": "robj@example.com",
+      "idade": 30,
+      "profissao": "Desenvolvedor",
+      "salario": "3000.00"
+    },
+    {
+      "id": "f76c1625-3d9b-4d4e-a37c-6005845b9120",
+      "nome": "Robson",
+      "email": "rob5@example.com",
+      "idade": 29,
+      "profissao": "Desenvolvedor",
+      "salario": "4000.00"
+    },
+    {
+      "id": "54d4aeba-bfa9-4482-9621-68374ad4246e",
+      "nome": "Jaribas das Caveras",
+      "email": "jab@example.com",
+      "idade": 24,
+      "profissao": "Desenvolvedor",
+      "salario": "8000.00"
+    },
+    {
+      "id": "835b1eef-140b-49e2-8c19-33cc0a15749b",
+      "nome": "Luizinho",
+      "email": "luiz@example.com",
+      "idade": 24,
+      "profissao": "Desenvolvedor",
+      "salario": "5000.00"
+    },
+    {
+      "id": "c501e8ab-9756-49b9-b0c4-51de90982e58",
+      "nome": "Luizete",
+      "email": "luize@example.com",
+      "idade": 28,
+      "profissao": "Desenvolvedor",
+      "salario": "9000.00"
+    },
+    {
+      "id": "71f284d0-93df-4eec-ba14-a3cca19c3ff5",
+      "nome": "Luiz",
+      "email": "luizi@example.com",
+      "idade": 28,
+      "profissao": "Desenvolvedor",
+      "salario": "4000.00"
+    },
+    {
+      "id": "8c739a3e-b8c5-4f12-864c-e4c184e76da8",
+      "nome": "Robson Ferreira da Silva",
+      "email": "rob.ferreira@example.com",
+      "idade": 30,
+      "profissao": "Desenvolvedor",
+      "salario": "10000.00"
+    }
+  ]
+}

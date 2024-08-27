@@ -3,6 +3,10 @@ import { ApexOptions } from "apexcharts";
 import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
+/**initialOptions é uma tipagem  que define as propriedades do inicials do ApexOptions que permite a gente configurar o gráfico
+ * e não ter que usar o nome "options" que é uma propriedade do ApexCharts
+ * por isso criamos um estado para poder modificar sem alterar o nome da propriodade, mudando por meio da tipagem.
+ */
 const initialOptions: ApexOptions = {
   legend: {
     show: false,
@@ -110,7 +114,7 @@ const ChartPeople: React.FC = () => {
     series: [],
   });
   const [options, setOptions] = useState<ApexOptions>(initialOptions);
-  const { data, isLoading } = usePeopleData();
+  const { data } = usePeopleData();
 
   useEffect(() => {
     if (data) {
@@ -128,6 +132,7 @@ const ChartPeople: React.FC = () => {
       });
 
       // Atualiza as categorias no xaxis do gráfico
+      // Pegamos os valores já definidos por default, passamos como props e alteramos apenas o que é necessário.
       setOptions((prevOptions) => ({
         ...prevOptions,
         xaxis: {

@@ -11,6 +11,7 @@ export function usePeopleData() {
   const query = useQuery({
     queryFn: fetchData,
     queryKey: ["people"],
+    refetchInterval: 20000,
   });
   return query;
 }
