@@ -4,7 +4,7 @@ import { People } from "@/types/People";
 import { useMutation } from "@tanstack/react-query";
 
 const createData = async (data: People) => {
-  const create = await axios.post(`${API_URL}/create/${data}`);
+  const create = await axios.post(`${API_URL}/create/`, data);
   return create;
 };
 

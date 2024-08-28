@@ -21,22 +21,34 @@ export default function Registro() {
     }));
   };
 
-  const dados = (e: any) => {
+  const dados = async (e: any) => {
     e.preventDefault();
-    mutate(data);
-    console.log("Dados Salvos: ", data);
+    try {
+      await mutate(data); // Espera a mutação ser concluída
+      console.log("Dados Salvos: ", data);
+      // Limpa o formulário após o sucesso
+      setData({
+        nome: "",
+        email: "",
+        idade: 0,
+        profissao: "",
+        salario: 0,
+      });
+    } catch (error) {
+      console.error("Erro ao salvar dados:", error);
+    }
   };
 
   return (
     <div className="contain-layout mt-5 py-10">
-      <h1 className="mt-6 text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+      <h1 className="mt-6 text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
         Registro
       </h1>
       <form className="max-w-sm mx-auto py-10" onSubmit={dados}>
         <div className="mb-5">
           <label
             htmlFor="nome"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900"
           >
             Nome
           </label>
@@ -47,13 +59,13 @@ export default function Registro() {
             placeholder="João Ninguém"
             value={data.nome}
             onChange={handleInputChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />
         </div>
         <div className="mb-5">
           <label
             htmlFor="email"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900"
           >
             Seu E-mail
           </label>
@@ -63,7 +75,7 @@ export default function Registro() {
             name="email"
             value={data.email}
             onChange={handleInputChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="name@email.com"
             required
           />
@@ -72,7 +84,7 @@ export default function Registro() {
         <div className="mb-5">
           <label
             htmlFor="idade"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900"
           >
             Idade
           </label>
@@ -83,14 +95,14 @@ export default function Registro() {
             placeholder="30"
             value={data.idade}
             onChange={handleInputChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />
         </div>
 
         <div className="mb-5">
           <label
             htmlFor="profissao"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900"
           >
             Profissão
           </label>
@@ -101,14 +113,14 @@ export default function Registro() {
             placeholder="Desenvolvedor"
             value={data.profissao}
             onChange={handleInputChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />
         </div>
 
         <div className="mb-5">
           <label
             htmlFor="salario"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900"
           >
             Salário
           </label>
@@ -119,13 +131,13 @@ export default function Registro() {
             placeholder="Salário"
             value={data.salario}
             onChange={handleInputChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />
         </div>
 
         <button
           type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
         >
           Registrar
         </button>
