@@ -108,6 +108,12 @@ const DataTablePeople = () => {
         </div>
 
         <div className="flex items-center font-medium">
+          <p className="pl-2 text-black dark:text-white">
+            Tabela de Funcionários
+          </p>
+        </div>
+
+        {/* <div className="flex items-center font-medium">
           <select
             value={pageSize}
             onChange={(e) => {
@@ -122,7 +128,7 @@ const DataTablePeople = () => {
             ))}
           </select>
           <p className="pl-2 text-black dark:text-white">Por página</p>
-        </div>
+        </div> */}
       </div>
 
       <table
