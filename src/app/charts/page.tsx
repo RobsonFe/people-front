@@ -1,7 +1,6 @@
 "use client";
 
 import BasicChart from "../components/Charts/BasicChart";
-import ChartPeople from "../components/Charts/ChartPeople";
 
 export default function Charts() {
   return (
@@ -10,9 +9,8 @@ export default function Charts() {
         Gráficos
       </h1>
       <div className="container mx-auto px-4">
-        <ChartPeople />
+        <BasicChart />
       </div>
-      <BasicChart />
     </>
   );
 }

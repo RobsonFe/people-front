@@ -1,14 +1,17 @@
 "use client";
+import { usePeopleMutation } from "@/service/usePeopleCreate";
 import { useState } from "react";
 
 export default function Registro() {
   const [data, setData] = useState({
     nome: "",
     email: "",
-    idade: "",
+    idade: 0,
     profissao: "",
-    salario: "",
+    salario: 0,
   });
+
+  const { mutate } = usePeopleMutation();
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -20,6 +23,7 @@ export default function Registro() {
 
   const dados = (e: any) => {
     e.preventDefault();
+    mutate(data);
     console.log("Dados Salvos: ", data);
   };
 
