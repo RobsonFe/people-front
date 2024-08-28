@@ -12,6 +12,7 @@ import {
 import Loader from "../common/Loader";
 
 const DataTablePeople = () => {
+  // Paginação da tabela.
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(10);
 
@@ -20,6 +21,7 @@ const DataTablePeople = () => {
     pageSize
   );
 
+  // Extração dos dados da API para distribuir na tabela.
   const formattedData = React.useMemo(
     () => (data?.results ? data.results : []),
     [data]
@@ -29,7 +31,7 @@ const DataTablePeople = () => {
     () => [
       {
         Header: "Nome",
-        accessor: "nome",
+        accessor: "nome", //  O nome da propriedade do objeto que será exibido na tabela, usado como key de cada dado do objeto.
       },
       {
         Header: "Email",
