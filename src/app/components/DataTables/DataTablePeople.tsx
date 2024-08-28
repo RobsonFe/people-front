@@ -1,6 +1,6 @@
 import { usePeopleData } from "@/service/http/usePeopleData";
 import { People } from "@/types/People";
-import React from "react";
+import React, { useState } from "react";
 import {
   useTable,
   useSortBy,
@@ -9,22 +9,27 @@ import {
   usePagination,
   Column,
 } from "react-table";
+import Loader from "../common/Loader";
 
 const DataTablePeople = () => {
-  const { data } = usePeopleData();
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
 
-  // Formatação do objeto dados para distribuir  para a tabela
+  const { data, isLoading, isFetching } = usePeopleData(
+    pageIndex + 1,
+    pageSize
+  );
+
   const formattedData = React.useMemo(
     () => (data?.results ? data.results : []),
     [data]
   );
 
-  // Define table columns
   const columns: Column<People>[] = React.useMemo(
     () => [
       {
         Header: "Nome",
-        accessor: "nome", // A chave de cada objeto como se fosse um ID para associar ao JSON.
+        accessor: "nome",
       },
       {
         Header: "Email",
@@ -50,6 +55,9 @@ const DataTablePeople = () => {
     {
       columns,
       data: formattedData,
+      initialState: { pageIndex, pageSize },
+      manualPagination: true,
+      pageCount: data?.count ? Math.ceil(data.count / pageSize) : -1,
     },
     useFilters,
     useGlobalFilter,
@@ -70,11 +78,21 @@ const DataTablePeople = () => {
     canNextPage,
     canPreviousPage,
     pageOptions,
-    setPageSize,
     gotoPage,
+    setPageSize: setTablePageSize,
   } = tableInstance;
 
-  const { globalFilter, pageIndex, pageSize } = state;
+  const { globalFilter } = state;
+
+  React.useEffect(() => {
+    setPageIndex(state.pageIndex);
+  }, [state.pageIndex]);
+
+  React.useEffect(() => {
+    setPageSize(state.pageSize);
+  }, [state.pageSize]);
+
+  if (isLoading) return <Loader />;
 
   return (
     <section className="data-table-common data-table-two rounded-sm border border-stroke bg-white py-4 shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -82,7 +100,7 @@ const DataTablePeople = () => {
         <div className="w-100">
           <input
             type="text"
-            value={globalFilter}
+            value={globalFilter || ""}
             onChange={(e) => setGlobalFilter(e.target.value)}
             className="w-full rounded-md border border-stroke px-5 py-2.5 outline-none focus:border-primary dark:border-strokedark dark:bg-meta-4 dark:focus:border-primary"
             placeholder="Procurar..."
@@ -92,7 +110,9 @@ const DataTablePeople = () => {
         <div className="flex items-center font-medium">
           <select
             value={pageSize}
-            onChange={(e) => setPageSize(Number(e.target.value))}
+            onChange={(e) => {
+              setTablePageSize(Number(e.target.value));
+            }}
             className="bg-transparent pl-2"
           >
             {[5, 10, 20, 50].map((size) => (
@@ -101,7 +121,7 @@ const DataTablePeople = () => {
               </option>
             ))}
           </select>
-          <p className="pl-2 text-black dark:text-white">Por Página</p>
+          <p className="pl-2 text-black dark:text-white">Por página</p>
         </div>
       </div>
 
@@ -173,13 +193,13 @@ const DataTablePeople = () => {
 
       <div className="flex justify-between border-t border-stroke px-8 pt-5 dark:border-strokedark">
         <p className="font-medium">
-          Showing {pageIndex + 1} of {pageOptions.length} pages
+          Mostrando página {pageIndex + 1} de {pageOptions.length}
         </p>
         <div className="flex">
           <button
             className="flex cursor-pointer items-center justify-center rounded-md p-1 px-2 hover:bg-primary hover:text-white"
             onClick={() => previousPage()}
-            disabled={!canPreviousPage}
+            disabled={!canPreviousPage || isFetching}
           >
             <svg
               className="fill-current"
@@ -203,6 +223,7 @@ const DataTablePeople = () => {
               className={`${
                 pageIndex === index && "bg-primary text-white"
               } mx-1 flex cursor-pointer items-center justify-center rounded-md p-1 px-3 hover:bg-primary hover:text-white`}
+              disabled={isFetching}
             >
               {index + 1}
             </button>
@@ -211,7 +232,7 @@ const DataTablePeople = () => {
           <button
             className="flex cursor-pointer items-center justify-center rounded-md p-1 px-2 hover:bg-primary hover:text-white"
             onClick={() => nextPage()}
-            disabled={!canNextPage}
+            disabled={!canNextPage || isFetching}
           >
             <svg
               className="fill-current"
@@ -229,6 +250,8 @@ const DataTablePeople = () => {
           </button>
         </div>
       </div>
+
+      {isFetching && <Loader />}
     </section>
   );
 };

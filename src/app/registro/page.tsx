@@ -24,7 +24,7 @@ export default function Registro() {
   const dados = async (e: any) => {
     e.preventDefault();
     try {
-      await mutate(data); // Espera a mutação ser concluída
+      await mutate(data);
       console.log("Dados Salvos: ", data);
       // Limpa o formulário após o sucesso
       setData({
