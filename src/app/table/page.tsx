@@ -1,12 +1,14 @@
 "use client";
 
-import DataTableTwo from "../components/DataTables/DataTableTwo";
+import DataTablePeople from "../components/DataTables/DataTablePeople";
 
 export default function Table() {
   return (
-    <div className="table">
-      <h1>Pagina da table</h1>
-      <DataTableTwo />
+    <div className="container mx-auto">
+      <h1 className="mb-4 text-4xl text-center font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl">
+        Tabela de Dados
+      </h1>
+      <DataTablePeople />
     </div>
   );
 }
