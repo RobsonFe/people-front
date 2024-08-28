@@ -1,6 +1,8 @@
 "use client";
 
 import { usePeopleMutation } from "@/service/http/usePeopleData";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 
 export default function Registro() {
@@ -35,8 +37,10 @@ export default function Registro() {
         profissao: "",
         salario: 0,
       });
+      toast.success("Registrado com sucesso!");
     } catch (error) {
       console.error("Erro ao salvar dados:", error);
+      toast.error("Erro ao preencher o Formulario");
     }
   };
 
@@ -143,6 +147,7 @@ export default function Registro() {
           Registrar
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 }
