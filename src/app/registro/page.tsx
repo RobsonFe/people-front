@@ -1,5 +1,6 @@
 "use client";
-import { usePeopleMutation } from "@/service/usePeopleCreate";
+
+import { usePeopleMutation } from "@/service/http/usePeopleData";
 import { useState } from "react";
 
 export default function Registro() {

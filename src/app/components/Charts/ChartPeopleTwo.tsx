@@ -106,7 +106,7 @@ const ChartPeopleTwo: React.FC = () => {
       <div className="mb-4 justify-between gap-4 sm:flex">
         <div>
           <h4 className="text-xl font-semibold text-black dark:text-white">
-            Profit this week
+            Os Maiores Salários da Empresa
           </h4>
         </div>
         <div>
@@ -117,10 +117,10 @@ const ChartPeopleTwo: React.FC = () => {
               className="relative z-20 inline-flex appearance-none bg-transparent py-1 pl-3 pr-8 text-sm font-medium outline-none"
             >
               <option value="" className="dark:bg-boxdark">
-                This Week
+                Esta Semana
               </option>
               <option value="" className="dark:bg-boxdark">
-                Last Week
+                Ultima Semana
               </option>
             </select>
             <span className="absolute right-3 top-1/2 z-10 -translate-y-1/2">
